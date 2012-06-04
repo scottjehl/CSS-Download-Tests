@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8 />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Stylesheet Download Tests</title>
+	
+	<!-- test page includes 	-->
+	<link rel="stylesheet" href="_inc/bootstrap.css">
+	<style>
+		body { margin: 50px auto; max-width: 70em }
+		h1 {margin: .6em;}
+		p { font-size: 1.3em; font-weight: normal; line-height: 1.4; margin: 1em; }
+		table { width: 100% !important; margin: 1.3em; }
+	</style>
+
+
+
+	<!-- stylesheet download tests:
+		Note: these will 404 and that's okay. 
+		The point is to monitor HTTP traffic and see which ones are requested.
+	-->
+	
+	<!-- common media-query-support-only flag (only all) -->
+	<link href="only-all.css" rel="stylesheet" media="only all">
+	
+	<!-- very wide viewport width -->
+	<link href="min-width-4000px.css" rel="stylesheet" media="(min-width: 4000px)">
+	
+	<!-- former, with only keyword -->
+	<link href="only-all-and-min-width-4000px.css" rel="stylesheet" media="only all and (min-width: 4000px)">
+	
+	<!-- very wide device width -->
+	<link href="min-device-width-4000px.css" rel="stylesheet" media="(min-device-width: 4000px)">
+	
+	<!-- former, with only keyword -->
+	<link href="only-all-and-min-device-width-4000px.css" rel="stylesheet" media="only all and (min-device-width: 4000px)">
+	
+	<!-- very high screen dpi -->
+	<link href="min-device-pixel-ratio-6.css" rel="stylesheet" media="(min-device-pixel-ratio: 6)">
+	
+	<!-- former, with only keyword -->
+	<link href="only-all-and-min-device-pixel-ratio-6.css" rel="stylesheet" media="only all and (min-device-pixel-ratio: 6)">
+	
+	<!-- tv query -->
+	<link href="tv.css" rel="stylesheet" media="tv">
+
+	<!-- handheld query -->
+	<link href="handheld.css" rel="stylesheet" media="handheld">
+	
+	<!-- nonsense query -->
+	<link href="nonsense.css" rel="stylesheet" media="nonsense">
+
+</head>
+<body>
+		<h1>CSS Downloads by Media Query</h1>
+		
+		<p class="alert-message success">A test by <a href="http://github.com/scottjehl">@scottjehl</a></p>
+		<p>The point of this page is to test whether today's browsers will download stylesheets that are referenced with media queries that would not apply on that browser or device. </p>
+		<p>This page contains 10 <code>link</code> elements that reference CSS files meant for testing. Each <code>link</code> has a  <code>media</code> attribute containing a unique media query. All but a few of these media queries (and their respective stylesheets) would not likely apply on any devices today; for example, some media queries reference extremely wide screens, some reference impossibly (currently) rich high-density HD displays, and one is just plain nonsense (really: <code>media="nonsense"</code>). In addition to those, there are a few realistic queries as well, such as <code>only all</code>, <code>tv</code>, and <code>handheld</code></p> 
+		<p>The results of manually testing this page by loading it in several browsers and monitoring HTTP traffic are as follows. The top row is the only one that should apply in any media-query supporting browser. </p>
+
+	<table class="bordered-table zebra-striped">
+		<thead>
+			<tr>
+				<th>Media Query</th>
+				<th>iPhone 4.3</th>
+				<th>Android Tablet</th>
+				<th>Chrome 19</th>
+				<th>IE 8</th>
+				<th>IE 9</th>
+				<th>Opera 11</th>
+				<th>Opera Mobile</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th>only all</th>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+			</tr>
+			<tr>
+				<th>(min-width: 4000px)</th>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+			</tr>
+			<tr>
+				<th>only all and (min-width: 4000px)</th>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+			</tr>
+			<tr>
+				<th>(min-device-width: 4000px)</th>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+			</tr>
+			<tr>
+				<th>(min-device-pixel-ratio: 6)</th>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+			</tr>
+			<tr>
+				<th>only all and (min-device-pixel-ratio: 6)</th>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+			</tr>
+			<tr>
+				<th>tv</th>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+			</tr>
+			<tr>
+				<th>handheld</th>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+			</tr>
+			<tr>
+				<th>nonsense</th>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+				<td><span class='label success'>No Request</span></td>
+				<td><span class='label warning'>Downloaded</span></td>
+			</tr>
+			
+			
+		</tbody>
+	</table>
+
+</body>
+</html>
