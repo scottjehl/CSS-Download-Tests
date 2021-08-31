@@ -4,4 +4,4 @@ Testing stylesheet downloads per inapplicable media queries.
 
 A test by @scottjehl
 
-- [Test page over here](http://scottjehl.github.com/CSS-Download-Tests/)
+- [Test page over here](https://scottjehl.github.io/CSS-Download-Tests/)
